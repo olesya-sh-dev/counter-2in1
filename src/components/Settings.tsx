@@ -44,6 +44,9 @@ export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinVal
           type="number"
           value={maxValue}
           onChange={setMaxValueHandler}
+          error={maxValue! < minValue! || maxValue! < 0 || maxValue === null }
+         
+          
         />
       </Box>
       <Box
@@ -61,6 +64,8 @@ export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinVal
           type="number"
           value={minValue}
           onChange={setMinValueHandler}
+          error={maxValue! < minValue! ||minValue! < 0 || minValue === null}
+         
         />
       </Box>
 
