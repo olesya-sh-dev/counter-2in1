@@ -4,22 +4,25 @@ import { ButtonComponent } from "./Button";
 import { TextField, Typography } from "@mui/material";
 
 type SettingsPropsType = {
+  maxValue: number|null
+  minValue: number|null
   giveValues: (maxValue: number, minValue: number) => void
+  setMaxValue: (maxValue: number) => void
+  setMinValue: (minValue: number) => void
 }
 
-export const Settings = ({giveValues}: SettingsPropsType) => {
-
-  const [maxValue, setMaxValue] = useState("");
-  const [minValue, setMinValue] = useState("");
+export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinValue}: SettingsPropsType) => {
+  
   
   const setMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMaxValue(e.currentTarget.value);
-  };
-  
-  const setMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMinValue(e.currentTarget.value);
+    const newMaxValue = Number(e.currentTarget.value);
+    setMaxValue(newMaxValue);
   };
 
+  const setMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const newMinValue = Number(e.currentTarget.value);
+    setMinValue(newMinValue);
+  };
 
   return (
     <Box
@@ -61,7 +64,8 @@ export const Settings = ({giveValues}: SettingsPropsType) => {
         />
       </Box>
 
-      <ButtonComponent title={"SET"} onClick={() => giveValues(+maxValue, +minValue)} />
+      <ButtonComponent title={"SET"} onClick={() => giveValues(maxValue!, minValue!)} />
     </Box>
   );
 };
+//

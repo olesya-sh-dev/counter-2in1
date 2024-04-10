@@ -5,18 +5,21 @@ import Box  from '@mui/material/Box';
 
 type CounterPropsType = {
     value: number
+    maxValue: number|null
+    minValue: number|null
     onSettingsHandler: () => void
 }
 
 
 
- export const Counter = ({value, onSettingsHandler}: CounterPropsType) => {
+ export const Counter = ({value, onSettingsHandler, maxValue, minValue}: CounterPropsType) => {
 
     const [count, setCount] = useState(value)
 
     const incrementNumberHandler = () => {
-      setCount(count + 1)
-    }
+if (count < maxValue!)
+      setCount(prevCount => prevCount + 1)
+    } 
 
     const resetNumberHandler = () => {
       setCount(value)
