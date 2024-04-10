@@ -5,12 +5,12 @@ import Box  from '@mui/material/Box';
 
 type CounterPropsType = {
     value: number
-    setValuesHandler: () => void
+    onSettingsHandler: () => void
 }
 
 
 
- export const Counter = ({value, setValuesHandler}: CounterPropsType) => {
+ export const Counter = ({value, onSettingsHandler}: CounterPropsType) => {
 
     const [count, setCount] = useState(value)
 
@@ -29,7 +29,7 @@ type CounterPropsType = {
         <h3>{count}</h3>
       <ButtonComponent title={'INC'} onClick={incrementNumberHandler}/>
       <ButtonComponent title={'RESET'} onClick={resetNumberHandler}/>
-      <ButtonComponent title={'SET'} onClick={setValuesHandler}/>
+      <ButtonComponent title={'SET'} onClick={onSettingsHandler}/>
     </Box>
   )
 }

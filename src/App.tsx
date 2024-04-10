@@ -6,18 +6,25 @@ import { Settings } from './components/Settings';
 
 function App() {
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number | null>(null);
 
-const setValuesHandler = () => {
-  setValue(5)
+  const giveValues = (maxValue: number, minValue: number) => {
+    setValue(minValue)
+    console.log(maxValue);
+   
+  }
+const onSettingsHandler = () => {
+  setValue(null) 
 }
+
+
   return (
     <div className="App">
-      {value === 0 
+      {value 
       ?
-      <Counter value={value} setValuesHandler={setValuesHandler}/>
+      <Counter value={value} onSettingsHandler={onSettingsHandler}/>
       :
-      <Settings/>
+      <Settings giveValues={giveValues}/>
       }
 
 
