@@ -38,6 +38,8 @@ function App() {
   const giveValues = (maxValue: number, minValue: number) => {
     // TODO: add values in localStorage
     setValue(minValue);
+    localStorage.setItem("minValue", minValue.toString());
+    localStorage.setItem("maxValue", maxValue.toString());
     // setMaxValue(maxValue);
     // setMinValue(minValue);
     //console.log(maxValue);

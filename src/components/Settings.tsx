@@ -21,13 +21,13 @@ export const Settings = ({
   const setMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = Number(e.currentTarget.value);
     setMaxValue(newMaxValue);
-    localStorage.setItem("maxValue", newMaxValue.toString());
+    //localStorage.setItem("maxValue", newMaxValue.toString());
   };
 
   const setMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMinValue = Number(e.currentTarget.value);
     setMinValue(newMinValue);
-    localStorage.setItem("minValue", newMinValue.toString());
+    //localStorage.setItem("minValue", newMinValue.toString());
   };
 
   return (
