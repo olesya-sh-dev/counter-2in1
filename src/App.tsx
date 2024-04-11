@@ -9,28 +9,37 @@ function App() {
   const [maxValue, setMaxValue] = useState<number | null>(null);
   const [minValue, setMinValue] = useState<number | null>(null);
 
- 
   useEffect(() => {
     const localValue = localStorage.getItem("minValue");
     const localMaxValue = localStorage.getItem("maxValue");
     const localMinValue = localStorage.getItem("minValue");
-  
+
     setValue(localValue !== null ? Number(localValue) : null);
     setMaxValue(localMaxValue !== null ? Number(localMaxValue) : null);
     setMinValue(localMinValue !== null ? Number(localMinValue) : null);
   }, []);
 
   // useEffect(() => {
-    
+
   //   setValue(Number(localStorage.getItem("minValue")));
   //   setMinValue(Number(localStorage.getItem("minValue")));
   //   setMaxValue(Number(localStorage.getItem("maxValue")));
   // }, []);
 
-  const giveValues = (maxValue: number, minValue: number) => {
+  const incrementNumberHandler = () => {
+    if (maxValue !== null && value! < maxValue!)
+      setValue((prevValue) => prevValue! + 1);
+  };
+
+  const resetNumberHandler = () => {
     setValue(minValue);
-    setMaxValue(maxValue);
-    setMinValue(minValue);
+  };
+
+  const giveValues = (maxValue: number, minValue: number) => {
+    // TODO: add values in localStorage
+    setValue(minValue);
+    // setMaxValue(maxValue);
+    // setMinValue(minValue);
     //console.log(maxValue);
   };
   const onSettingsHandler = () => {
@@ -44,7 +53,8 @@ function App() {
           value={value}
           onSettingsHandler={onSettingsHandler}
           maxValue={maxValue}
-          minValue={minValue}
+          incrementNumberHandler={incrementNumberHandler}
+          resetNumberHandler={resetNumberHandler}
         />
       ) : (
         <Settings
