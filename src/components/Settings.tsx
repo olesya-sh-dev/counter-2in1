@@ -1,27 +1,33 @@
 import Box from "@mui/material/Box";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
 import { ButtonComponent } from "./Button";
 import { TextField, Typography } from "@mui/material";
 
 type SettingsPropsType = {
-  maxValue: number|null
-  minValue: number|null
-  giveValues: (maxValue: number, minValue: number) => void
-  setMaxValue: (maxValue: number) => void
-  setMinValue: (minValue: number) => void
-}
+  maxValue: number | null;
+  minValue: number | null;
+  giveValues: (maxValue: number, minValue: number) => void;
+  setMaxValue: (maxValue: number) => void;
+  setMinValue: (minValue: number) => void;
+};
 
-export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinValue}: SettingsPropsType) => {
-  
-  
+export const Settings = ({
+  maxValue,
+  minValue,
+  giveValues,
+  setMaxValue,
+  setMinValue,
+}: SettingsPropsType) => {
   const setMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = Number(e.currentTarget.value);
     setMaxValue(newMaxValue);
+    localStorage.setItem("maxValue", newMaxValue.toString());
   };
 
   const setMinValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const newMinValue = Number(e.currentTarget.value);
     setMinValue(newMinValue);
+    localStorage.setItem("minValue", newMinValue.toString());
   };
 
   return (
@@ -42,11 +48,9 @@ export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinVal
           label="Enter max value"
           variant="outlined"
           type="number"
-          value={maxValue}
+          value={maxValue ?? ""}
           onChange={setMaxValueHandler}
-          error={maxValue! < minValue! || maxValue! < 0 || maxValue === null }
-         
-          
+          error={maxValue! <= minValue! || maxValue! < 0 || maxValue === null}
         />
       </Box>
       <Box
@@ -62,14 +66,16 @@ export const Settings = ({maxValue, minValue, giveValues, setMaxValue, setMinVal
           label="Enter min value"
           variant="outlined"
           type="number"
-          value={minValue}
+          value={minValue ?? ""}
           onChange={setMinValueHandler}
-          error={maxValue! < minValue! ||minValue! < 0 || minValue === null}
-         
+          error={maxValue! <= minValue! || minValue! < 0 || minValue === null}
         />
       </Box>
 
-      <ButtonComponent title={"SET"} onClick={() => giveValues(maxValue!, minValue!)} />
+      <ButtonComponent
+        title={"SET"}
+        onClick={() => giveValues(maxValue!, minValue!)}
+      />
     </Box>
   );
 };

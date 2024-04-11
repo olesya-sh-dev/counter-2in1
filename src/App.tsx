@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import logo from "./logo.svg";
+import React, { useEffect, useState } from "react";
+
 import "./App.css";
 import { Counter } from "./components/Counter";
 import { Settings } from "./components/Settings";
@@ -9,9 +9,29 @@ function App() {
   const [maxValue, setMaxValue] = useState<number | null>(null);
   const [minValue, setMinValue] = useState<number | null>(null);
 
+ 
+  useEffect(() => {
+    const localValue = localStorage.getItem("minValue");
+    const localMaxValue = localStorage.getItem("maxValue");
+    const localMinValue = localStorage.getItem("minValue");
+  
+    setValue(localValue !== null ? Number(localValue) : null);
+    setMaxValue(localMaxValue !== null ? Number(localMaxValue) : null);
+    setMinValue(localMinValue !== null ? Number(localMinValue) : null);
+  }, []);
+
+  // useEffect(() => {
+    
+  //   setValue(Number(localStorage.getItem("minValue")));
+  //   setMinValue(Number(localStorage.getItem("minValue")));
+  //   setMaxValue(Number(localStorage.getItem("maxValue")));
+  // }, []);
+
   const giveValues = (maxValue: number, minValue: number) => {
     setValue(minValue);
-    console.log(maxValue);
+    setMaxValue(maxValue);
+    setMinValue(minValue);
+    //console.log(maxValue);
   };
   const onSettingsHandler = () => {
     setValue(null);
@@ -19,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      {value ? (
+      {value !== null ? (
         <Counter
           value={value}
           onSettingsHandler={onSettingsHandler}
