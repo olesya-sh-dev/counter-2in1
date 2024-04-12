@@ -33,49 +33,106 @@ export const Settings = ({
   return (
     <Box
       component="section"
-      sx={{ p: 2, border: "1px dashed grey", width: 300 }}
+      sx={{
+        p: 2,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        m: "150px auto",
+        border: "1px solid",
+        borderRadius: "10px",
+        width: 350,
+        height: "auto",
+        padding: "10px",
+        gap: "10px",
+        bgcolor: "primary.dark",
+      }}
     >
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "10px",
+          width: 300,
+          padding: "10px",
+          border: "5px solid",
+          borderColor: "secondary.light",
+          borderRadius: "10px",
+          backgroundColor: "primary.light",
         }}
       >
-        <Typography component={"span"}>max value</Typography>
-        <TextField
-          id="outlined-number"
-          label="Enter max value"
-          variant="outlined"
-          type="number"
-          value={maxValue ?? ""}
-          onChange={setMaxValueHandler}
-          error={maxValue! <= minValue! || maxValue! < 0 || maxValue === null}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Typography
+            component={"span"}
+            sx={{ color: "primary.dark", fontWeight: "bold", fontSize: "20px" }}
+          >
+            max value
+          </Typography>
+          <TextField
+            id="outlined-number"
+            label="Enter max value"
+            variant="outlined"
+            type="number"
+            value={maxValue ?? ""}
+            onChange={setMaxValueHandler}
+            error={maxValue! <= minValue! || maxValue! < 0 || maxValue === null}
+            sx={{ width: 200, backgroundColor: "white" }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "10px",
+          }}
+        >
+          <Typography
+            component={"span"}
+            sx={{ color: "primary.dark", fontWeight: "bold", fontSize: "20px" }}
+          >
+            min value
+          </Typography>
+          <TextField
+            id="outlined-number"
+            label="Enter min value"
+            variant="outlined"
+            type="number"
+            value={minValue ?? ""}
+            onChange={setMinValueHandler}
+            error={maxValue! <= minValue! || minValue! < 0 || minValue === null}
+            sx={{ width: 200, backgroundColor: "white" }}
+          />
+        </Box>
       </Box>
+
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          justifyContent: "center",
+          padding: "5px",
+          width: 300,
+          border: "5px solid",
+          borderColor: "secondary.light",
+          borderRadius: "10px",
         }}
       >
-        <Typography component={"span"}>min value</Typography>
-        <TextField
-          id="outlined-number"
-          label="Enter min value"
-          variant="outlined"
-          type="number"
-          value={minValue ?? ""}
-          onChange={setMinValueHandler}
-          error={maxValue! <= minValue! || minValue! < 0 || minValue === null}
+        <ButtonComponent
+          title={"SET"}
+          onClick={() => giveValues(maxValue!, minValue!)}
         />
       </Box>
-
-      <ButtonComponent
-        title={"SET"}
-        onClick={() => giveValues(maxValue!, minValue!)}
-      />
     </Box>
   );
 };
