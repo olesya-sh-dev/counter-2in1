@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ButtonComponent } from "./Button";
-import Box from "@mui/material/Box";
-import { ButtonGroup, autocompleteClasses } from "@mui/material";
-import { ThemeProvider } from "@emotion/react";
+import { Wrapper } from "./Wrapper";
+import { NumberWrapper } from "./NumberWrapper";
+import { ButtonsWrapper } from "./ButtonsWrapper";
 
 type CounterPropsType = {
   value: number;
@@ -32,36 +32,8 @@ export const Counter = ({
   // };
 
   return (
-    <Box
-      component="section"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        m: "150px auto",
-        border: "1px solid",
-        borderRadius: "10px",
-        width: 350,
-        height: "auto",
-        padding: "10px",
-        gap: "10px",
-        bgcolor: "primary.dark",
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          border: "5px solid",
-          borderColor: "secondary.light",
-          borderRadius: "10px",
-          width: 300,
-          padding: "10px",
-          height: 150,
-          bgcolor: "primary.main",
-        }}
-      >
+    <Wrapper>
+      <NumberWrapper>
         <h3
           style={{
             color: value === maxValue ? "#ba000d" : "white",
@@ -72,30 +44,16 @@ export const Counter = ({
         >
           {value}
         </h3>
-      </Box>
-      <ButtonGroup
-        color="secondary"
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: "10px",
-          width: 300,
-          padding: "10px",
-          bgcolor: "primary.main",
-          border: "5px solid",
-          borderColor: "secondary.light",
-          borderRadius: "10px",
-        }}
-      >
+      </NumberWrapper>
+      <ButtonsWrapper>
         <ButtonComponent
           title={"INC"}
           onClick={incrementNumberHandler}
           disabled={value === maxValue}
-       
         />
         <ButtonComponent title={"RESET"} onClick={resetNumberHandler} />
         <ButtonComponent title={"SET"} onClick={onSettingsHandler} />
-      </ButtonGroup>
-    </Box>
+      </ButtonsWrapper>
+    </Wrapper>
   );
 };
